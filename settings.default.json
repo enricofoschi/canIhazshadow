@@ -1,0 +1,29 @@
+{
+    "absoluteUrl": "",
+    "mailgun": {
+        "from": "",
+        "username": "",
+        "password": ""
+    },
+    "kadiraAuth": {
+        "appId": "",
+        "appSecret": "",
+        "on": false
+    },
+    "users": [],
+    "google": {
+        "clientId": "",
+        "secret": ""
+    },
+    "interviewScheduler": {
+        "startHour": 9,
+        "startMinute": 30,
+        "endHour": 17,
+        "endMinute": 30,
+        "timeSpan": 14,
+        "duration": 90
+    },
+    "holidays": [
+        "25/12"
+    ]
+}

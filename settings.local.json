@@ -1,0 +1,28 @@
+{
+    "mailgun": {
+        "from": "foschi.enrico@gmail.com",
+        "username": "postmaster@sandbox5df7734c3d1742269b56fed126c3827f.mailgun.org",
+        "password": "e8b144839ca86373243ea86524ff774b"
+    },
+    "kadiraAuth": {
+        "appId": "bRp4xj97N89Jt9Yxd",
+        "appSecret": "588e2a57-ba78-4a0f-813c-0290468a3019",
+        "on": false
+    },
+    "users": [],
+    "google": {
+        "clientId": "757000787508-j3enqvu1l0agt1nimeoavps45eatu3i1.apps.googleusercontent.com",
+        "secret": "RJPocGJTUigGsYMp2fcC4pwT"
+    },
+    "interviewScheduler": {
+        "startHour": 9,
+        "startMinute": 30,
+        "endHour": 17,
+        "endMinute": 30,
+        "timeSpan": 14,
+        "duration": 90
+    },
+    "holidays": [
+        "25/12"
+    ]
+}
