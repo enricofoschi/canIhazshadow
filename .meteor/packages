@@ -20,3 +20,7 @@ aldeed:autoform
 cottz:publish-relations
 percolate:synced-cron
 spiderable
+
+
+npm-container
+meteorhacks:npm
