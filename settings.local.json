@@ -9,20 +9,19 @@
         "appSecret": "588e2a57-ba78-4a0f-813c-0290468a3019",
         "on": false
     },
-    "users": [],
     "google": {
         "clientId": "757000787508-j3enqvu1l0agt1nimeoavps45eatu3i1.apps.googleusercontent.com",
         "secret": "RJPocGJTUigGsYMp2fcC4pwT"
     },
-    "interviewScheduler": {
-        "startHour": 9,
-        "startMinute": 30,
-        "endHour": 17,
-        "endMinute": 30,
-        "timeSpan": 14,
-        "duration": 90
-    },
     "holidays": [
         "25/12"
-    ]
+    ],
+    "xing": {
+        "key": "8b1dd827c881ae9cfbc6",
+        "secret": "255e31e6e4fd2ea1921d42fd47c26867f128e578"
+    },
+    "linkedin": {
+        "clientId": "mc1r7rwxp82a",
+        "secret": "QGbz3DrnmxXB00UH"
+    }
 }

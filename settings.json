@@ -9,18 +9,9 @@
         "appSecret": "5af04e1d-0302-4b7b-97fe-4250ffba5582",
         "on": true
     },
-    "users": [],
     "google": {
         "clientId": "757000787508-0hraae9vhgfqu91vm1l2nqbmak5a0t5d.apps.googleusercontent.com",
         "secret": "U3Qmxl7speUA1zBR2FsbTzco"
-    },
-    "interviewScheduler": {
-        "startHour": 9,
-        "startMinute": 30,
-        "endHour": 17,
-        "endMinute": 30,
-        "timeSpan": 14,
-        "duration": 90
     },
     "holidays": [
         "25/12"
