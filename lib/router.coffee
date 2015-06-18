@@ -10,9 +10,9 @@ PresentationController = RouteController.extend {
 
 Router.route '/', {
     controller: PresentationController
-    name: 'presentation_core_index'
+    name: 'presentation_home_main'
     action: ->
-        Router.go '/login'
+        @render 'presentation.home.main'
         return
 }
 
