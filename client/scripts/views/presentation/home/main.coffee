@@ -13,6 +13,11 @@
             Meteor.loginWithXing (e, r) ->
                 onLogin()
 
+        'click .btn-login-email': (e, t) ->
+            Helpers.Client.Modal.Show {
+                identifier: 'presentation-account-modal-signup-email'
+            }
+
     }
 
 )(Helpers.Client.TemplatesHelper.Handle('presentation.home.main'))

@@ -20,10 +20,7 @@ aldeed:autoform
 cottz:publish-relations
 percolate:synced-cron
 spiderable
-
-
 npm-container
 meteorhacks:npm
 accounts-xing
 pauli:accounts-linkedin
-tap:i18n
