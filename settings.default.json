@@ -1,4 +1,5 @@
 {
+    "debug": true,
     "absoluteUrl": "",
     "mailgun": {
         "from": "",

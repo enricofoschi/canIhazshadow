@@ -1,4 +1,5 @@
 {
+    "debug": true,
     "mailgun": {
         "from": "foschi.enrico@gmail.com",
         "username": "postmaster@sandbox5df7734c3d1742269b56fed126c3827f.mailgun.org",

@@ -4,6 +4,7 @@
 
     template.onCustomCreated = ->
         signupFormSchema = Crater.Schema.Get Crater.Schema.Account.EmailSignup
+        console.log signupFormSchema
 
     template.helpers {
         'schema': ->
@@ -12,9 +13,7 @@
 
     Meteor.startup ->
         @AutoForm.hooks {
-            presentationEmailSignupForm: Helpers.Client.Form.GetFormHooks {
-
-            }
+            presentationEmailSignupForm: Helpers.Client.Form.GetFormHooks {}
         }
 
 )(Helpers.Client.TemplatesHelper.Handle('presentation_modal_email_signup'))
