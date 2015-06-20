@@ -57,6 +57,20 @@ Router.route '/auction/:id', {
         return
 }
 
+Router.route '/bid/receive/email', {
+    name: 'presentation_bid_receive_email'
+    where: 'server'
+    action: ->
+        formidable = Meteor.npmRequire('formidable')
+        form = new formidable.IncomingForm
+        form.parse @request, (err, fields, files) ->
+            if err
+                return
+            else
+                console.log fields.text
+                return fields.text
+}
+
 # Admin stuff
 adminRoles = ['admin']
 
