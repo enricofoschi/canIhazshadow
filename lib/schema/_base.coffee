@@ -1,0 +1,1 @@
+@ShadowForGood.Schema = {}

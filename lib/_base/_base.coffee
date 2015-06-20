@@ -1,1 +1,1 @@
-@InterviewScheduler = {}
+@ShadowForGood = {}
