@@ -28,3 +28,4 @@ accounts-facebook
 accounts-twitter
 cunneen:sendgrid
 email
+accolver:twilio-meteor
