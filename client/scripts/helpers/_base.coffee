@@ -1,1 +1,1 @@
-@Helpers.Client.InterviewScheduler = {}
+@Helpers.Client.ShadowForGood = {}

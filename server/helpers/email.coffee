@@ -1,4 +1,4 @@
-class @Helpers.Server.InterviewScheduler.Email
+class @Helpers.Server.ShadowForGood.Email
     @Send: (options) ->
 
         head = Assets.getText 'templates/email/base/head.html'
