@@ -1,5 +1,25 @@
 <template name="presentation.home.main">
     <h2>Blablabla some fancy text</h2>
+    <section id="shadowMasters">
+        <div class="container">
+            {{#each shadowMasters}}
+                <div class="row">
+                    {{#each this}}
+                        <div class="col-sm-4 col-md-3 col-xs-12">
+                            <div class="master-card">
+                                <div class="img-circle" style="background-image:url('{{ masterPicture this}}')"></div>
+                                <span class="title">{{ masterFullName this}}</span>
+                                Shadow on
+                                <strong>{{ masterSkill this}}</strong> by donating to
+                                <strong>{{ masterCharity this}}</strong>
+                                <button class="btn btn-block btn-lg btn-success top15 btn-place-bid">PLACE BID</button>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            {{/each}}
+        </div>
+    </section>
     <section id="provider" class="container text-center">
         <h2>Get somebody to shadow you <strong>for good</strong></h2>
 
@@ -32,7 +52,7 @@
                             {{#if isValidating}}
                                 <div class="alert alert-success bottom30">
                                     You are awesome. Let us have a think about this and we'll get back to you.
-                                <p>Messed up some details? No worries! Just fix them right below!</p>
+                                    <p>Messed up some details? No worries! Just fix them right below!</p>
                                 </div>
                             {{/if}}
                             {{> afQuickField value=skill class='input-lg' name='skill' class="bottom30" placeholder='schemaLabel'}}
@@ -42,9 +62,13 @@
                             {{> afQuickField value=charityDetails class='input-lg' name='charity_details' class="bottom30" placeholder='schemaLabel' type='textarea'}}
 
                             {{#if isValidating}}
-                                <button type="submit" class="btn btn-lg btn-success btn-request-approval">Update Proposal</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-request-approval">Update
+                                    Proposal
+                                </button>
                             {{else}}
-                                <button type="submit" class="btn btn-lg btn-success btn-request-approval">Request Approval</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-request-approval">Request
+                                    Approval
+                                </button>
                             {{/if}}
                         {{/if}}
                     </div>
@@ -55,4 +79,27 @@
     <section id="about">
         ABOUT
     </section>
+
+    <div class="modal fade" id="signupDialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Who are thou <i class="fa fa-smile-o"></i>?</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="bottom15">Please authenticate with:</p>
+                    <a class="right10 btn btn-lg btn-social btn-continue-twitter btn-twitter">
+                        <i class="fa fa-twitter"></i> Twitter
+                    </a>
+                    <a class="right10 btn btn-lg btn-social btn-continue-facebook btn-facebook">
+                        <i class="fa fa-facebook"></i> Facebook
+                    </a>
+                    <a class="btn btn-lg btn-social btn-continue-linkedin btn-linkedin">
+                        <i class="fa fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 </template>

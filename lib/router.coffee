@@ -1,6 +1,9 @@
 # Presentation stuff
 PresentationController = RouteController.extend {
     layoutTemplate: 'PresentationLayout'
+    waitOn: -> [
+        Meteor.subscribe 'shadow-masters'
+    ]
     onAfterAction: ->
         Blaze.addBodyClass 'presentation'
         Blaze.addBodyClass ->
@@ -12,7 +15,15 @@ Router.route '/', {
     controller: PresentationController
     name: 'presentation_home_main'
     action: ->
-        @render 'presentation.home.main'
+
+        shadowMasters = Meteor.users.find({
+            'profile.shadow_for_good.status': 'approved'
+        }).fetch().toMatrix(4)
+
+        @render 'presentation.home.main', {
+            data:
+                shadowMasters: shadowMasters
+        }
         return
 }
 
@@ -30,6 +41,19 @@ Router.route '/approve/:id', {
         }
 
         Router.go '/'
+        return
+}
+
+Router.route '/auction/:id', {
+    controller: PresentationController
+    name: 'presentation_auction_main'
+    action: ->
+        @render 'presentation.auction.main', {
+            data:
+                shadowMaster: new MeteorUser Meteor.users.findOne {
+                    _id: @params.id
+                }
+        }
         return
 }
 

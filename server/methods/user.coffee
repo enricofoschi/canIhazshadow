@@ -3,6 +3,7 @@ Meteor.methods {
         user = new MeteorUser Meteor.user()
 
         attr.status = 'validation'
+        attr.bid = 10
 
         user.update {
             $set:
