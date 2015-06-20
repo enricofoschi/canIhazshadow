@@ -26,10 +26,6 @@ Meteor.startup ->
         secret: '10c0d4e24a2997185c52'
     )
 
-    pusher.trigger 'bids', 'new_bid', (
-        "message": "new bid"
-    )
-
 
 
 
