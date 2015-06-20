@@ -16,8 +16,6 @@
             if chosenAuction
                 Helpers.Client.Modal.Close()
                 onChosenAuction()
-            else
-                Roles.addUsersToRoles Meteor.userId(), ['master']
 
     onChosenAuction = ->
         Router.go '/auction/' + chosenAuction._id
@@ -35,14 +33,7 @@
 
         'click .btn-place-bid': (e, t) ->
 
-            chosenAuction = @
-
-            if not Meteor.userId()
-                Helpers.Client.Modal.Show {
-                    identifier: 'signupDialog'
-                }
-            else
-                onChosenAuction()
+            Router.go '/auction/' + @_id
 
     }
 

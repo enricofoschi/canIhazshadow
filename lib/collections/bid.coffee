@@ -6,5 +6,7 @@ class @ShadowForGood.Collections.Bid extends BaseCollection
         amount:
             type: Number
         user_id:
-            type: Number
+            type: String
+        auction_id:
+            type: String
     }

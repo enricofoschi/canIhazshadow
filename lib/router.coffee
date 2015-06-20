@@ -27,6 +27,21 @@ Router.route '/', {
         return
 }
 
+Router.route '/payment', {
+    controller: PresentationController
+    name: 'presentation_payment_index'
+    action: ->
+        @render 'presentation.payment.index'
+        return
+}
+
+Router.route '/bid/receive/sms', {
+    name: 'presentation_bid_receive_sms'
+    where: 'server'
+    action: ->
+        console.log this.request.body.From + ' says: ' + this.request.body.Body
+}
+
 Router.route '/approve/:id', {
     controller: PresentationController
     name: 'presentation_home_approved'
@@ -47,12 +62,22 @@ Router.route '/approve/:id', {
 Router.route '/auction/:id', {
     controller: PresentationController
     name: 'presentation_auction_main'
+    waitOn: ->
+        [
+            Meteor.subscribe 'bidders'
+            Meteor.subscribe 'bids', @params.id
+        ]
     action: ->
         @render 'presentation.auction.main', {
             data:
                 shadowMaster: new MeteorUser Meteor.users.findOne {
                     _id: @params.id
                 }
+                previousBids: ShadowForGood.Collections.Bid.find({}, {
+                    sort: {
+                        createdAt: 0
+                    }
+                }).fetch()
         }
         return
 }
@@ -69,29 +94,4 @@ Router.route '/bid/receive/email', {
             else
                 console.log fields.text
                 return fields.text
-}
-
-# Admin stuff
-adminRoles = ['admin']
-
-AdminController = RouteController.extend {
-    layoutTemplate: 'AdminLayout'
-
-    onBeforeAction: ->
-        if not Roles.userIsInRole Meteor.userId(), ['hr']
-            Router.go '/login'
-        else
-            @next()
-    waitOn: ->
-        [
-            Meteor.subscribe 'calendars'
-            Meteor.subscribe 'departments'
-            Meteor.subscribe 'interviews'
-        ]
-    onAfterAction: ->
-        Blaze.addBodyClass 'admin'
-        Blaze.addBodyClass ->
-            Router.current() and Router.current().route.getName()
-        Session.set('refresh', Math.random()) # Used to refresh sidebar menu
-        $('#side-menu .active').removeClass('active')
 }
