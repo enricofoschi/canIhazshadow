@@ -1,22 +1,47 @@
 <template name="presentation.auction.main">
     <div class="container text-center">
         {{#if hasBid }}
-            <h2 class="bid-title">CURRENT BID: <span class="bid-amount">&euro;{{ currentBid }}</span> by
+            <h2 class="bid-title">CURRENT BID: <span class="bid-amount">&euro;{{ currentBid }}</span></h2>
+
+            <h3 class="bidder-detail">by
 
                 <span class="bidder-img">
                     <div class="img-circle" style="background-image:url('{{bidderProfilePicture}}')"></div>
                 </span>
                 {{bidderFullName}}
-            </h2>
-
-            {{#if isWinner}}
-                Hold on buddy, you are winning
-            {{else}}
-                <button class="btn btn-lg btn-place-bid btn-success">BID &euro;{{ newAmount }}</button>
-            {{/if}}
+            </h3>
         {{else}}
             <h2 class="huge">PLACE THE FIRST BID: <span class="bigger">&euro; {{ currentBid }}</span></h2>
-            <button class="btn btn-lg btn-place-bid btn-success">BID &euro;{{ currentBid }}</button>
+        {{/if}}
+        {{#if isWinner}}
+            Hold on buddy, you are winning
+        {{else}}
+            <div class="row">
+                <div class="col-sm-offset-4 col-sm-4">
+                    <div class="input-group">
+                        <input type="number" class="txt-number form-control input-lg" placeholder="Amount"
+                               value="{{newAmount}}">
+                <span class="input-group-btn">
+                    <button class="btn-place-bid btn btn-success btn-lg" type="button">Place Bid <i
+                            class="fa fa-thumbs-up"></i></button>
+                </span>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+        {{#if previousBids}}
+            <h3>Previous Bids By</h3>
+            <ul class="list-unstyled previousBids">
+                {{#each previousBids}}
+                    <li>
+                        <span class="bidder-img">
+                            <div class="img-circle"
+                                 style="background-image:url('{{previousBidderProfilePicture user_id}}')"></div>
+                        </span> {{previousBidderFullName user_id}}
+                        bid {{amount}}
+                    </li>
+                {{/each}}
+            </ul>
         {{/if}}
     </div>
     <div class="modal fade" id="signupDialog">

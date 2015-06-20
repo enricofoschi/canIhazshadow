@@ -33,14 +33,7 @@
 
         'click .btn-place-bid': (e, t) ->
 
-            chosenAuction = @
-
-            if not Meteor.userId()
-                Helpers.Client.Modal.Show {
-                    identifier: 'signupDialog'
-                }
-            else
-                onChosenAuction()
+            Router.go '/auction/' + @_id
 
     }
 

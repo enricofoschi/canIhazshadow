@@ -1,2 +1,4 @@
-Meteor.publish 'bids', ->
-    ShadowForGood.Collections.Bid.find {}
+Meteor.publish 'bids', (auctionId) ->
+    ShadowForGood.Collections.Bid.find {
+        auction_id: auctionId
+    }
