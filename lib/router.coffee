@@ -16,6 +16,23 @@ Router.route '/', {
         return
 }
 
+Router.route '/approve/:id', {
+    controller: PresentationController
+    name: 'presentation_home_approved'
+    action: ->
+
+        Helpers.Client.MeteorHelper.CallMethod {
+            method: 'approveCharity'
+            params: [@params.id]
+            callback: (e, r) =>
+                if not e
+                    Helpers.Client.Notifications.Success 'User approved :)'
+        }
+
+        Router.go '/'
+        return
+}
+
 # Admin stuff
 adminRoles = ['admin']
 
