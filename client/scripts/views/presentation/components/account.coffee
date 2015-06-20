@@ -4,7 +4,6 @@
 
     template.onCustomCreated = ->
         signupFormSchema = Crater.Schema.Get Crater.Schema.Account.EmailSignup
-        console.log signupFormSchema
 
     template.helpers {
         'schema': ->

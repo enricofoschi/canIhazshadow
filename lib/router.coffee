@@ -5,7 +5,7 @@ PresentationController = RouteController.extend {
         Blaze.addBodyClass 'presentation'
         Blaze.addBodyClass ->
             Router.current() and Router.current().route.getName()
-        $('#side-menu').metisMenu();
+        window.initApp();
 }
 
 Router.route '/', {
