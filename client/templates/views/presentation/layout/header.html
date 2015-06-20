@@ -24,6 +24,11 @@
                     <li>
                         <a class="page-scroll" href="#provider">BE A SHADOW MASTER</a>
                     </li>
+                    {{#if currentUser.registered}}
+                        <li>
+                            <a class="btn-signout">SIGN OUT</a>
+                        </li>
+                    {{/if}}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

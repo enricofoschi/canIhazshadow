@@ -1,3 +1,3 @@
-@Crater.Services.InterviewScheduler = {}
+@Crater.Services.ShadowForGood = {}
 
-class @Crater.Services.InterviewScheduler.Base extends Crater.Services.Base
+class @Crater.Services.ShadowForGood.Base extends Crater.Services.Base

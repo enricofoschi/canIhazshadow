@@ -1,3 +1,3 @@
-@InterviewScheduler.Collections = {}
+@ShadowForGood.Collections = {}
 
-@BaseCollectionHolders.push @InterviewScheduler.Collections
+@BaseCollectionHolders.push @ShadowForGood.Collections

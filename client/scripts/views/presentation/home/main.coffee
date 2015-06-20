@@ -1,22 +1,25 @@
 ((template) =>
 
-    onLogin = ->
-        Router.go '/candidate/ftuf'
+    Helpers.Client.Application.addCallbacksToTemplate template.viewName, [
+        'adaptive-label'
+    ]
 
     template.events {
 
         'click .btn-continue-linkedin' : (e, t) ->
-            Meteor.loginWithLinkedIn (e, r) ->
-                onLogin()
+            Meteor.loginWithLinkedIn()
 
         'click .btn-continue-facebook' : (e, t) ->
-            Meteor.loginWithFacebook (e, r) ->
-                onLogin()
+            Meteor.loginWithFacebook()
 
         'click .btn-continue-twitter': (e, t) ->
-            Meteor.loginWithTwitter (e, r) ->
-                onLogin()
+            Meteor.loginWithTwitter()
 
+    }
+
+    template.helpers {
+        providerSchema: ->
+            Crater.Schema.Get ShadowForGood.Schema.ProviderSignup
     }
 
 )(Helpers.Client.TemplatesHelper.Handle('presentation.home.main'))
