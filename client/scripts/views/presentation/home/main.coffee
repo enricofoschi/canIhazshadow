@@ -31,7 +31,7 @@
             Meteor.loginWithFacebook onLogin
 
         'click .btn-continue-twitter': (e, t) ->
-            Meteor.loginWithTwitter onLogin
+            Helpers.Client.Notifications.Error 'Woah Buddy! Twitter likez no lolz. Their app creation Suckz (and it was broken this weekend)'
 
         'click .btn-place-bid': (e, t) ->
 

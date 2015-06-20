@@ -2,10 +2,10 @@
     <div class="container text-center">
         {{#if bidder }}
             <h2 class="huge">CURRENT BID: <span class="bigger">&euro; {{ currentBid }}</span></h2>
-            <button class="btn btn-lg btn-success">BID &euro; {{ newAmount }}</button>
+            <button class="btn btn-lg btn-place-bid btn-success">BID &euro; {{ newAmount }}</button>
         {{else}}
             <h2 class="huge">PLACE THE FIRST BID: <span class="bigger">&euro; {{ currentBid }}</span></h2>
-            <button class="btn btn-lg btn-success">BID &euro; {{ currentBid }}</button>
+            <button class="btn btn-lg btn-place-bid btn-success">BID &euro; {{ currentBid }}</button>
         {{/if}}
     </div>
 

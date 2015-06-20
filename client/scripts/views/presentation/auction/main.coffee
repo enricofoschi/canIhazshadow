@@ -24,25 +24,8 @@
 
     template.events {
 
-        'click .btn-continue-linkedin' : (e, t) ->
-            Meteor.loginWithLinkedIn onLogin
-
-        'click .btn-continue-facebook' : (e, t) ->
-            Meteor.loginWithFacebook onLogin
-
-        'click .btn-continue-twitter': (e, t) ->
-            Meteor.loginWithTwitter onLogin
-
-        'click .btn-place-bid': (e, t) ->
-
-            chosenAuction = @
-
-            if not Meteor.userId()
-                Helpers.Client.Modal.Show {
-                    identifier: 'signupDialog'
-                }
-            else
-                onChosenAuction()
+        'click .btn-place-bid' : (e, t) ->
+            console.log @shadowMaster
 
     }
 
