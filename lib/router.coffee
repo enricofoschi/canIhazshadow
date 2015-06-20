@@ -16,6 +16,14 @@ Router.route '/', {
         return
 }
 
+Router.route '/payment', {
+    controller: PresentationController
+    name: 'presentation_payment_index'
+    action: ->
+        @render 'presentation.payment.index'
+        return
+}
+
 Router.route '/approve/:id', {
     controller: PresentationController
     name: 'presentation_home_approved'

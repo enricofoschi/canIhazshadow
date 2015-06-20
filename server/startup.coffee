@@ -25,9 +25,3 @@ Meteor.startup ->
         key: '636c1f9e8ac0022ede0c'
         secret: '10c0d4e24a2997185c52'
     )
-
-
-
-
-
-
