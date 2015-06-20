@@ -5,18 +5,17 @@
 
     template.events {
 
-        'click .btn-login-linkedin' : (e, t) ->
+        'click .btn-continue-linkedin' : (e, t) ->
             Meteor.loginWithLinkedIn (e, r) ->
                 onLogin()
 
-        'click .btn-login-xing' : (e, t) ->
-            Meteor.loginWithXing (e, r) ->
+        'click .btn-continue-facebook' : (e, t) ->
+            Meteor.loginWithFacebook (e, r) ->
                 onLogin()
 
-        'click .btn-login-email': (e, t) ->
-            Helpers.Client.Modal.Show {
-                identifier: 'presentation-account-modal-signup-email'
-            }
+        'click .btn-continue-twitter': (e, t) ->
+            Meteor.loginWithTwitter (e, r) ->
+                onLogin()
 
     }
 
