@@ -47,6 +47,11 @@ Router.route '/approve/:id', {
 Router.route '/auction/:id', {
     controller: PresentationController
     name: 'presentation_auction_main'
+    onWait: ->
+        [
+            Meteor.subscribe 'bidders'
+            Meteor.subscribe 'bids'
+        ]
     action: ->
         @render 'presentation.auction.main', {
             data:

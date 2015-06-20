@@ -16,8 +16,6 @@
             if chosenAuction
                 Helpers.Client.Modal.Close()
                 onChosenAuction()
-            else
-                Roles.addUsersToRoles Meteor.userId(), ['master']
 
     onChosenAuction = ->
         Router.go '/auction/' + chosenAuction._id

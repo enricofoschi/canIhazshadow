@@ -1,5 +1,8 @@
-Meteor.publish 'shadow-masters', ->
-    Meteor.users.find {},
+Meteor.publish 'bidders', ->
+    ShadowForGood.Collections.Bid.find {}
+    Meteor.users.find {
+            'profile.bidder': true
+        },
         fields:
             'services.facebook.id': 1
             'services.facebook.name': 1

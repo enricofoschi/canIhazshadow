@@ -7,7 +7,14 @@ Meteor.methods {
 
         master.update {
             $set:
+                'profile.bidder': true
                 'profile.shadow_for_good.bid': nextBid
+                'profile.shadow_for_good.bidder': Meteor.userId()
+        }
+
+        ShadowForGood.Collections.Bid.create {
+            user_id: Meteor.userId()
+            bid: nextBid
         }
 
 }
