@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "crypto-js": {
-      "version": "3.1.5"
-    }
-  }
-}
