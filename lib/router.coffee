@@ -35,6 +35,13 @@ Router.route '/payment', {
         return
 }
 
+Router.route '/bid/receive/sms', {
+    name: 'presentation_bid_receive_sms'
+    where: 'server'
+    action: ->
+        console.log this.request.body.From + ' says: ' + this.request.body.Body
+}
+
 Router.route '/approve/:id', {
     controller: PresentationController
     name: 'presentation_home_approved'
