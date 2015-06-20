@@ -1,0 +1,6 @@
+{
+    "name": "canIhazshadow",
+    "scripts": {
+        "start": "meteor --settings settings.local.json"
+    }
+}
