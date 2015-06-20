@@ -1,5 +1,6 @@
 
 local
 .idea
+mup.json
 settings.json
 settings.local.json
