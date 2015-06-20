@@ -4,20 +4,50 @@
         'adaptive-label'
     ]
 
+    chosenAuction = null
+
+    template.onCustomCreated = ->
+        chosenAuction = null
+
+    onLogin = (e) =>
+
+        if not e
+            # shitty way to find out if modal is open
+            if chosenAuction
+                Helpers.Client.Modal.Close()
+                onChosenAuction()
+
+    onChosenAuction = ->
+        Router.go '/auction/' + chosenAuction._id
+
     template.events {
 
         'click .btn-continue-linkedin' : (e, t) ->
-            Meteor.loginWithLinkedIn()
+            Meteor.loginWithLinkedIn onLogin
 
         'click .btn-continue-facebook' : (e, t) ->
-            Meteor.loginWithFacebook()
+            Meteor.loginWithFacebook onLogin
 
         'click .btn-continue-twitter': (e, t) ->
-            Meteor.loginWithTwitter()
+            Helpers.Client.Notifications.Error 'Woah Buddy! Twitter likez no lolz. Their app creation Suckz (and it was broken this weekend)'
+
+        'click .btn-place-bid': (e, t) ->
+
+            chosenAuction = @
+
+            if not Meteor.userId()
+                Helpers.Client.Modal.Show {
+                    identifier: 'signupDialog'
+                }
+            else
+                onChosenAuction()
 
     }
 
     template.helpers {
+        isMaster: ->
+            user = new MeteorUser Meteor.user()
+            return user.profile.shadow_for_good
         providerSchema: ->
             Crater.Schema.Get ShadowForGood.Schema.ProviderSignup
         isApproved: ->
@@ -35,6 +65,22 @@
         skill: ->
             user = new MeteorUser Meteor.user()
             user.profile.shadow_for_good?.skill
+
+        masterFullName: (user) ->
+            user = new MeteorUser user
+            user.getFullName()
+
+        masterSkill: (user) ->
+            user = new MeteorUser user
+            user.profile.shadow_for_good.skill
+
+        masterCharity: (user) ->
+            user = new MeteorUser user
+            user.profile.shadow_for_good.charity
+
+        masterPicture: (user) ->
+            user = new MeteorUser user
+            user.getProfilePicture()
     }
 
     Meteor.startup ->
