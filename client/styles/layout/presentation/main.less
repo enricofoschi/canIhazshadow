@@ -1,18 +1,55 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600);
 
+@font-face {
+    font-family: 'bt_monobold';
+    src: url(/fonts/bt_mono_bold-webfont-15cd35288a155ed938e468aeeab6c4d3.eot);
+    src: url(/fonts/bt_mono_bold-webfont-15cd35288a155ed938e468aeeab6c4d3.eot?#iefix) format("embedded-opentype"),
+    url(/fonts/bt_mono_bold-webfont.2-1d05246d995e4bd6b32c5126b47dc358.woff) format("woff2"),
+    url(/fonts/bt_mono_bold-webfont-03ea6f1da58d9219cdf610ef51326132.woff) format("woff"),
+    url(/fonts/bt_mono_bold-webfont-aa8fa71ab720de057b904c70fda57eac.ttf) format("truetype"),
+    url(/fonts/bt_mono_bold-webfont-6cd82256f27c07b3f73f73e775c173f6.svg#bt_monobold) format("svg");
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'mk4';
+    src: url('/fonts/mk4/mk4-webfont.eot');
+    src: url('/fonts/mk4/mk4-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/mk4/mk4-webfont.woff2') format('woff2'),
+    url('/fonts/mk4/mk4-webfont.woff') format('woff'),
+    url('/fonts/mk4/mk4-webfont.ttf') format('truetype'),
+    url('/fonts/mk4/mk4-webfont.svg#mk4') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 html,
 body{
     height:100%;
 }
 
 body, .btn{
-    font-family: 'Open Sans', sans-serif !important;
+    font-family: 'bt_monobold', 'Open Sans', sans-serif !important;
     text-decoration: none!important;
+}
+
+
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'bt_monobold', 'Open Sans', sans-serif !important;
+    color:#fff!important;
+}
+
+h1{
+    font-family: "mk4"!important;
+    font-size:40px;
 }
 
 body.presentation
 {
-    background:#69D2E7;
     padding-top:90px;
 }
 
@@ -47,4 +84,13 @@ body.presentation
     text-align: center;
     margin:0 0 20px;
     font-size:26px;
+}
+
+.navbar-custom{
+    background-color: rgba(0,0,0,0.6)!important;
+    padding:5px 0!important;
+}
+
+.page-title{
+    text-shadow: 4px 4px 2px rgba(102, 5, 5, 1);
 }
