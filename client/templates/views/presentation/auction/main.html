@@ -1,52 +1,61 @@
 <template name="presentation.auction.main">
-    <div class="container text-center">
-        {{#if isApproved}}
-        <h1 class="page-title">Ends in: {{countDown}}</h1>
-        {{/if}}
-            {{#if hasBid }}
-                <h2 class="bid-title">CURRENT BID: <span class="bid-amount">&euro;{{ currentBid }}</span></h2>
-
-                <h3 class="bidder-detail">by
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="">
+                    {{#if isApproved}}
+                    {{#if countDown}}
+                    <h1 class="page-title">Ends in: {{countDown}}</h1>
+                    {{/if}}
+                    {{/if}}
+                    {{#if hasBid }}
+                    <div class="col-md-4">
+                        <h2 class="bid-title">CURRENT BID: <span class="bid-amount">&euro;{{ currentBid }}</span></h2>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="bidder-detail">by
 
                     <span class="bidder-img">
                         <div class="img-circle" style="background-image:url('{{bidderProfilePicture}}')"></div>
                     </span>
-                    {{bidderFullName}}
-                </h3>
-            {{else}}
-                <h2 class="bid-title">PLACE THE FIRST BID: <span class="bid-amount">&euro; {{ currentBid }}</span></h2>
-            {{/if}}
-            {{#if isWinner}}
-                {{#if isTerminated}}
-                <h1>CONGRATULATIONS! YOU WON THIS</h1>
-                {{else}}
+                            {{bidderFullName}}
+                        </h3>
+                    </div>
+                    {{else}}
+                    <h2 class="bid-title">PLACE THE FIRST BID: <span class="bid-amount">&euro; {{ currentBid }}</span></h2>
+                    {{/if}}
+                    {{#if isWinner}}
+                    {{#if isTerminated}}
+                    <h1>CONGRATULATIONS! YOU WON THIS</h1>
+                    {{else}}
                     <h1>SO FAR, YOU ARE ROCKING THIS</h1>
-                {{/if}}
-            {{else}}
-                {{#if isTerminated}}
+                    {{/if}}
+                    {{else}}
+                    {{#if isTerminated}}
                     This auction ended.
-                {{else}}
+                    {{else}}
                     <div class="row">
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <div class="input-group">
-                            <input type="number" class="txt-number form-control input-lg" placeholder="Amount"
-                                   value="{{newAmount}}">
+                        <div class="col-sm-offset-4 col-sm-4">
+                            <div class="input-group">
+                                <input type="number" class="txt-number form-control input-lg" placeholder="Amount"
+                                       value="{{newAmount}}">
                     <span class="input-group-btn">
                         <button class="btn-place-bid btn btn-success btn-lg" type="button">Place Bid <i
                                 class="fa fa-thumbs-up"></i></button>
                     </span>
+                            </div>
                         </div>
                     </div>
+                    {{/if}}
+                    {{/if}}
                 </div>
-                {{/if}}
-            {{/if}}
-        </div>
-    <section class="text-center bg-white-transparent pfull20">
-        <div class="container">
-            {{#if previousBids}}
-                <h2>Previous Bids By</h2>
-                <ul class="list-unstyled previousBids">
-                    {{#each previousBids}}
+            </div>
+            <div class="col-md-3">
+                <section class="text-center bg-white-transparent pfull20">
+                    {{#if previousBids}}
+                    <h2>Previous Bids By</h2>
+                    <ul class="list-unstyled previousBids">
+                        {{#each previousBids}}
                         <li class="bottom15">
                             {{#if previousBidderProfilePicture user_id}}
                             <span class="bidder-img">
@@ -57,11 +66,13 @@
                             {{previousBidderFullName user_id}}
                             bid {{amount}}
                         </li>
-                    {{/each}}
-                </ul>
-            {{/if}}
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                </section>
+            </div>
+        </div>
     </div>
-        </section>
     <div class="modal fade" id="signupDialog">
         <div class="modal-dialog">
             <div class="modal-content">

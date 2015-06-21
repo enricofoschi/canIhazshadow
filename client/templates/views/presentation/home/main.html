@@ -1,5 +1,5 @@
 <template name="presentation.home.main">
-    <h1 class="page-title">Bid your best to shadow a great master</h1>
+    <h1 class="page-title">Bid your best to shadow <br> a great master</h1>
     <section id="shadowMasters" class="intro">
         <div class="container">
             {{#if shadowMasters}}
@@ -8,7 +8,7 @@
                         {{#each this}}
                             <div class="col-sm-4 col-md-3 col-xs-12">
                                 <div class="master-card">
-                                    <div class="img-circle"
+                                    <div class="img-circle img-master"
                                          style="background-image:url('{{ masterPicture this}}')"></div>
                                     <span class="title">{{ masterFullName this}}</span>
                                     <span class="subtitle">You will shadow:</span>

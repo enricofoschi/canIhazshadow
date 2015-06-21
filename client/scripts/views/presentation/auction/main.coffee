@@ -49,7 +49,7 @@
             diffTime = eventTime - currentTime
             duration = moment.duration(diffTime, 'milliseconds')
 
-            if diffTime < 0
+            if diffTime <= 0 or not diffTime
                 clearInterval counterInterval
                 counterInterval = null
                 countDown.set null
