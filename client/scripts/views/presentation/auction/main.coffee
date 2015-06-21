@@ -71,8 +71,6 @@
     bidCallback = (e, r)=>
         if e is 'LOW' or e
             Helpers.Client.Notifications.Error 'Please enter a bid amount higher than the current bid'
-        else
-            Helpers.Client.Notifications.Success 'Your bid is confirmed.', 'Awesome!'
 
     template.onCustomCreated = ->
         subscribed = false
