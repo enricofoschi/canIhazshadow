@@ -12,9 +12,9 @@
                                          style="background-image:url('{{ masterPicture this}}')"></div>
                                     <span class="title">{{ masterFullName this}}</span>
                                     <span class="subtitle">You will shadow</span>
-                                    <strong>{{ masterSkill this}}</strong>
+                                    <span>{{ masterSkill this}}</span>
                                     <hr/>
-                                    <span class="subtitle">by donating to</span><strong>{{ masterCharity this}}</strong>
+                                    <span class="subtitle">by donating to</span><span>{{ masterCharity this}}</span>
                                     <button class="btn btn-block btn-lg btn-success top15 btn-place-bid">PLACE BID
                                     </button>
                                 </div>
@@ -23,7 +23,7 @@
                     </div>
                 {{/each}}
             {{else}}
-                <p class="bottom0 alert alert-info text-center">Darn. There are no masters at the moment.</p>
+                <p class="bottom0 text-center">Darn. There are no masters at the moment.</p>
             {{/if}}
         </div>
     </section>
