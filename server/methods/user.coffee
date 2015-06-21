@@ -25,7 +25,7 @@ Meteor.methods {
                 charityDetails: user.profile.shadow_for_good.charity_details
                 url: Meteor.absoluteUrl 'approve/' + user._id
             }
-            to: 'foschi.enrico@gmail.com'
+            to: Meteor.settings.approverEmail
             from: 'noreply@shadowforgood.de'
         }
 
@@ -53,4 +53,9 @@ Meteor.methods {
                 }
         else
             throw 'Damn, no authorization'
+
+    'getClientSettings': ->
+        return {
+            twilioNumber: Meteor.settings.twilio.number
+        }
 }

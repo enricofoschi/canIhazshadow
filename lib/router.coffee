@@ -118,7 +118,7 @@ Router.route '/auction/:id', {
                 }
                 previousBids: ShadowForGood.Collections.Bid.find({}, {
                     sort: {
-                        createdAt: 0
+                        createdAt: -1
                     }
                 }).fetch()
         }
