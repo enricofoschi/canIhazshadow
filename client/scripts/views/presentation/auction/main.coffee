@@ -21,9 +21,9 @@
             return
 
         console.log 'Subscribing to Pusher'
-        channel = pusher.subscribe 'bids_' + template.currentInstance.data.shadowMaster._id
+        channel = pusher.subscribe 'bids'
         channel.bind 'new_bid', (data) ->
-            if data.from is Meteor.userId()
+            if data.from is Meteor.userId() or template.currentInstance.data.shadowMaster._id isnt data.masterId
                 return
             else
                 bidder = new MeteorUser data.from
