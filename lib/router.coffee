@@ -133,7 +133,7 @@ Router.route '/auction/:id', {
 Busboy = null
 
 if Meteor.isServer
-    Busboy = Meteor.npmRequire "Busboy"
+    Busboy = Meteor.npmRequire "busboy"
 
 Router.route '/bid/receive/email', {
     name: 'presentation_bid_receive_email'
