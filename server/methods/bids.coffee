@@ -1,5 +1,5 @@
 Meteor.methods {
-    'placeBid': (masterId, bid) ->
+    'placeBid': (masterId, bid, bidderId = null) ->
         master = new MeteorUser masterId
 
         currentBid = master.profile.shadow_for_good.bid || 0
@@ -12,10 +12,10 @@ Meteor.methods {
         master.update {
             $set:
                 'profile.shadow_for_good.bid': nextBid
-                'profile.shadow_for_good.bidder': Meteor.userId()
+                'profile.shadow_for_good.bidder': bidderId || Meteor.userId()
         }
 
-        currentUser = new MeteorUser Meteor.user()
+        currentUser = new MeteorUser bidderId || Meteor.user()
 
         currentUser.update {
             $set:
@@ -23,7 +23,7 @@ Meteor.methods {
         }
 
         ShadowForGood.Collections.Bid.create {
-            user_id: Meteor.userId()
+            user_id: bidderId || Meteor.userId()
             amount: nextBid
             auction_id: masterId
         }

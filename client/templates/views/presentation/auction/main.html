@@ -1,28 +1,32 @@
 <template name="presentation.auction.main">
     <div class="container text-center">
         {{#if isApproved}}
-        Ends in: {{countDown}}
+            <h1 class="page-title">Ends in: {{countDown}}</h1>
         {{/if}}
-            {{#if hasBid }}
-                <h2 class="bid-title">CURRENT BID: <span class="bid-amount">&euro;{{ currentBid }}</span></h2>
+        {{#if hasBid }}
+            <h2 class="bid-title">CURRENT BID: <span class="bid-amount">&euro;{{ currentBid }}</span></h2>
 
-                <h3 class="bidder-detail">by
+            <h3 class="bidder-detail">by
 
                     <span class="bidder-img">
                         <div class="img-circle" style="background-image:url('{{bidderProfilePicture}}')"></div>
                     </span>
-                    {{bidderFullName}}
-                </h3>
+                {{bidderFullName}}
+            </h3>
+        {{else}}
+            <h2 class="bid-title">PLACE THE FIRST BID: <span class="bid-amount">&euro; {{ currentBid }}</span></h2>
+        {{/if}}
+        {{#if isWinner}}
+            {{#if isTerminated}}
+                <h1>CONGRATULATIONS! YOU WON THIS</h1>
             {{else}}
-                <h2 class="bid-title">PLACE THE FIRST BID: <span class="bid-amount">&euro; {{ currentBid }}</span></h2>
+                <h1>SO FAR, YOU ARE ROCKING THIS</h1>
             {{/if}}
-            {{#if isWinner}}
-                Hold on buddy, you are winning
+        {{else}}
+            {{#if isTerminated}}
+                This auction ended.
             {{else}}
-                {{#if isTerminated}}
-                    This auction ended.
-                {{else}}
-                    <div class="row">
+                <div class="row">
                     <div class="col-sm-offset-4 col-sm-4">
                         <div class="input-group">
                             <input type="number" class="txt-number form-control input-lg" placeholder="Amount"
@@ -32,25 +36,33 @@
                                 class="fa fa-thumbs-up"></i></button>
                     </span>
                         </div>
+                        or send a text to {{number}} with "{{code}} {{newAmount}}" (or whatever amound higher than {{newAmount}})
                     </div>
                 </div>
-                {{/if}}
             {{/if}}
+        {{/if}}
+    </div>
+    <section class="text-center bg-white-transparent pfull20">
+        <div class="container">
             {{#if previousBids}}
-                <h3>Previous Bids By</h3>
+                <h2>Previous Bids By</h2>
                 <ul class="list-unstyled previousBids">
                     {{#each previousBids}}
-                        <li>
-                            <span class="bidder-img">
+                        <li class="bottom15">
+                            {{#if previousBidderProfilePicture user_id}}
+                                <span class="bidder-img">
                                 <div class="img-circle"
                                      style="background-image:url('{{previousBidderProfilePicture user_id}}')"></div>
-                            </span> {{previousBidderFullName user_id}}
+                            </span>
+                            {{/if}}
+                            {{previousBidderFullName user_id}}
                             bid {{amount}}
                         </li>
                     {{/each}}
                 </ul>
             {{/if}}
-    </div>
+        </div>
+    </section>
     <div class="modal fade" id="signupDialog">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -51,7 +51,38 @@ Router.route '/bid/receive/sms', {
     name: 'presentation_bid_receive_sms'
     where: 'server'
     action: ->
-        console.log this.request.body.From + ' says: ' + this.request.body.Body
+        console.log 'Bid from mobile'
+
+        phone = @request.body.From
+
+        body = @request.body.Body.split ' '
+        shadowMasterCode = body[0]
+        bid = body[1]
+
+        bidder = Meteor.users.findOne {
+            'profile.phone': phone
+        }
+
+        if !bidder
+            Meteor.users.insert {
+                profile: {
+                    phone: phone
+                }
+            }
+
+        bidder = Meteor.users.findOne {
+            'profile.phone': phone
+        }
+
+        shadowMaster = Meteor.users.findOne {
+            'profile.shadow_for_good.code': shadowMasterCode
+        }
+
+        if shadowMaster and bid
+
+            Meteor.call 'placeBid', shadowMaster._id, bid, bidder._id
+            console.log 'Succeeded: ' + bid
+            @response.end ''
 }
 
 Router.route '/approve/:id', {
@@ -87,7 +118,7 @@ Router.route '/auction/:id', {
                 }
                 previousBids: ShadowForGood.Collections.Bid.find({}, {
                     sort: {
-                        createdAt: 0
+                        createdAt: -1
                     }
                 }).fetch()
         }
