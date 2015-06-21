@@ -16,16 +16,18 @@
                         <div class="col-md-12">
                             <h3 class="bidder-detail">by
 
+                        {{#if bidderProfilePicture}}
                                 <span class="bidder-img">
                                     <div class="img-circle" style="background-image:url('{{bidderProfilePicture}}')"></div>
                                 </span>
+                        {{/if}}
                                 {{bidderFullName}}
                             </h3>
                         </div>
                     </div>
 
                     {{else}}
-                    <h2 class="bid-title">PLACE THE FIRST BID: <span class="bid-amount">&euro; {{ currentBid }}</span>
+                    <h2 class="bid-title">PLACE THE FIRST BID: <span class="bid-amount">&euro;{{ currentBid }}</span>
                     </h2>
                     {{/if}}
                     <div class="row">
@@ -64,10 +66,11 @@
                 </div>
 
                 <div class="bg-white-transparent pfull20 bid-sms">
-                    <h2>or send a text to {{number}} with <span class="inline">{{code}} {{newAmount}}</span> (or whatever amound higher than {{newAmount}})</h2>
+                    <h2>or send a text to {{number}} with <span class="inline">{{code}} {{newAmount}}</span></h2>
                 </div>
                 <div class="bg-white-transparent pfull20 bid-sms">
-                    <h2>or send a text to inbound@enrico.foschi.bymail.in with  <span class="inline">{{code}} {{newAmount}}</span> (or whatever amound higher than {{newAmount}})</h2>
+                    <h2>or send a text to inbound@enrico.foschi.bymail.in with
+                        <span class="inline">{{code}} {{newAmount}}</span></h2>
                 </div>
             </div>
             <div class="col-md-3">
