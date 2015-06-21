@@ -29,15 +29,13 @@
             return
 
         subscribed = true
-        console.log 'Subscribing to Pusher'
         channel = pusher.subscribe 'bids'
         channel.bind 'new_bid', (data) ->
-            console.log data
             if data.from is Meteor.userId() or template.currentInstance.data.shadowMaster._id isnt data.masterId
                 return
             else
                 bidder = new MeteorUser data.from
-                Helpers.Client.Notifications.Warning 'Dyam! ' + bidder.getFirstName() + ' bid ' + data.bid + ' for this shadowing opportunity! Better hurry up and bid some more!'
+                Helpers.Client.Notifications.Warning 'Dyam! Somebody bid ' + data.bid + ' for this shadowing opportunity! Better hurry up and bid some more!'
                 naurisAwesomeSound = _.sample(naurisAwesomeSounds, 1)[0]
                 Helpers.Client.ShadowForGood.SoundCloud.Play naurisAwesomeSound
 

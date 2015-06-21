@@ -173,9 +173,12 @@ Router.route '/bid/receive/email', {
             }
 
             if not bidder
-                Accounts.createUser {
-                    email: emailFrom
-                    password: ''
+                Meteor.users.insert {
+                    emails: [
+                        {
+                            address: emailFrom
+                        }
+                    ]
                     profile: {}
                 }
 

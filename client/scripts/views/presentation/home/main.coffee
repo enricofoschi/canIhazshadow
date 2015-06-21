@@ -74,6 +74,10 @@
             user = new MeteorUser user
             user.profile.shadow_for_good.skill
 
+        masterSkillDetails: (user) ->
+            user = new MeteorUser user
+            user.profile.shadow_for_good.skill_details
+
         masterCharity: (user) ->
             user = new MeteorUser user
             user.profile.shadow_for_good.charity
