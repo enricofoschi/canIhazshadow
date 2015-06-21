@@ -6,4 +6,11 @@ Meteor.startup ->
     # pusher client for test.
     pusher = new Pusher("636c1f9e8ac0022ede0c");
 
-    channel = pusher.subscribe('private-bids');
+    channel = pusher.subscribe('bids');
+
+    channel.bind 'add_bid', (data) ->
+        console.log 'test'
+        console.log data
+        console.log data.message
+        console.log 'gets here'
+
