@@ -38,7 +38,6 @@
                 return
             else
                 bidder = new MeteorUser data.from
-                Helpers.Client.Notifications.Warning 'Dyam! Somebody bid ' + data.bid + ' for this shadowing opportunity! Better hurry up and bid some more!'
                 naurisAwesomeSound = _.sample(naurisAwesomeSounds, 1)[0]
                 Helpers.Client.ShadowForGood.SoundCloud.Play naurisAwesomeSound
 

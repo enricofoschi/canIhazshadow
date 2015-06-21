@@ -37,7 +37,7 @@ Meteor.methods {
             template: 'paid'
             subject: 'Time To Be The Shadow Master'
             data: {
-                amount: auction.profile.shadow_for_good.bid
+                amount: auction.profile?.shadow_for_good?.bid
                 email: currentUser.getEmail()
                 phone: currentUser.profile.phone
             }
