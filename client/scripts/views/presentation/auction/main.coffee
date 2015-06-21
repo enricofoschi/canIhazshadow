@@ -1,5 +1,8 @@
 ((template) =>
 
+    countDown = new ReactiveVar(null)
+    counterInterval = null
+
     Helpers.Client.Application.addCallbacksToTemplate template.viewName, [
         'adaptive-label'
     ]
@@ -26,6 +29,33 @@
 
     template.onCustomCreated = ->
         chosenAuction = null
+        countDown.set(null)
+        if counterInterval
+            clearInterval(counterInterval)
+            counterInterval = null
+
+    # HACKING THE SHIT OUT OF IT
+    addZero = (str) =>
+        if str.toString().length is 1
+            return '0' + str
+        return str
+
+    template.rendered = ->
+        eventTime= template.currentInstance.data.shadowMaster.profile.shadow_for_good.terminates
+        interval = 500
+
+        counterInterval = setInterval ->
+            currentTime = (new Date()).getTime()
+            diffTime = eventTime - currentTime
+            duration = moment.duration(diffTime, 'milliseconds')
+
+            if diffTime < 0
+                clearInterval counterInterval
+                counterInterval = null
+                countDown.set null
+            else
+                countDown.set(addZero(duration.hours()) + ":" + addZero(duration.minutes()) + ":" + addZero(duration.seconds()))
+        , interval
 
     onChosenAuction = ->
         Router.go '/auction/' + chosenAuction._id
@@ -71,6 +101,8 @@
         shadowMaster.profile.shadow_for_good.bid || 1
 
     template.helpers {
+        countDown: ->
+            countDown.get()
         bidderFullName: ->
             if @shadowMaster.profile.shadow_for_good?.bidder
                 user = new MeteorUser @shadowMaster.profile.shadow_for_good?.bidder
@@ -81,10 +113,14 @@
                 user = new MeteorUser @shadowMaster.profile.shadow_for_good?.bidder
                 return user.getProfilePicture()
             return ''
+        isApproved: ->
+            @shadowMaster.profile.shadow_for_good?.status is 'approved'
+        isTerminated: ->
+            @shadowMaster.profile.shadow_for_good?.status is 'terminated'
         isWinner: ->
             @shadowMaster.profile.shadow_for_good?.bidder is Meteor.userId()
         hasBid: ->
-            @shadowMaster.profile.shadow_for_good?.bid > 0
+            @shadowMaster.profile.shadow_for_good?.bid > 0 and @shadowMaster.profile.shadow_for_good?.bidder
         currentBid: ->
             currentBid @shadowMaster
         newAmount: ->

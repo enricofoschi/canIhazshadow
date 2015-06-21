@@ -9,9 +9,10 @@
                             <div class="master-card">
                                 <div class="img-circle" style="background-image:url('{{ masterPicture this}}')"></div>
                                 <span class="title">{{ masterFullName this}}</span>
-                                Shadow on
-                                <strong>{{ masterSkill this}}</strong> by donating to
-                                <strong>{{ masterCharity this}}</strong>
+                                <span class="subtitle">You will shadow:</span>
+                                <strong>{{ masterSkill this}}</strong>
+                                <hr />
+                                <span class="subtitle">by donating to</span><strong>{{ masterCharity this}}</strong>
                                 <button class="btn btn-block btn-lg btn-success top15 btn-place-bid">PLACE BID</button>
                             </div>
                         </div>
@@ -40,7 +41,7 @@
                 </div>
             </div>
         {{else}}
-            {{#autoForm class="adaptive-field-wrapper" meteormethod='setCharity' schema=providerSchema id="insertCharityForm" type="method" trimStrings=true}}
+            {{#autoForm class="adaptive-field-wrapper" meteormethod='setCharity' schema=providerSchema id="insertCharityForm" type="method" trimStrings=true resetOnSuccess=false}}
 
                 <div class="row">
                     <div class="col-md-offset-2 col-md-8">
@@ -55,11 +56,13 @@
                                     <p>Messed up some details? No worries! Just fix them right below!</p>
                                 </div>
                             {{/if}}
-                            {{> afQuickField value=skill class='input-lg' name='skill' class="bottom30" placeholder='schemaLabel'}}
+                            {{> afQuickField value=skill name='skill' class="bottom30 input-lg" placeholder='schemaLabel'}}
 
-                            {{> afQuickField value=charity class='input-lg' name='charity' class="bottom30" placeholder='schemaLabel'}}
+                            {{> afQuickField value=skillDetails name='skill_details' class="bottom30 input-lg" placeholder='schemaLabel' type='textarea'}}
 
-                            {{> afQuickField value=charityDetails class='input-lg' name='charity_details' class="bottom30" placeholder='schemaLabel' type='textarea'}}
+                            {{> afQuickField value=charity name='charity' class="bottom30 input-lg" placeholder='schemaLabel'}}
+
+                            {{> afQuickField value=charityDetails name='charity_details' class="bottom30 input-lg" placeholder='schemaLabel' type='textarea'}}
 
                             {{#if isValidating}}
                                 <button type="submit" class="btn btn-lg btn-success btn-request-approval">Update
@@ -75,9 +78,6 @@
                 </div>
             {{/autoForm}}
         {{/if}}
-    </section>
-    <section id="about">
-        ABOUT
     </section>
 
     <div class="modal fade" id="signupDialog">

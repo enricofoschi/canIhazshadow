@@ -1,6 +1,14 @@
 Meteor.publish 'shadow-masters', ->
     Meteor.users.find {
-            'profile.shadow_for_good.status': 'approved'
+            $or:
+                [
+                    {
+                        'profile.shadow_for_good.status': 'approved'
+                    },
+                    {
+                        'profile.shadow_for_good.status': 'terminated'
+                    }
+                ]
         },
         {
             fields:

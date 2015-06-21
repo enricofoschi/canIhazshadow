@@ -2,7 +2,7 @@
     companyName: '4Scotty'
     languages: ["en", "de"]
     defaultLanguage: "en",
-    "soundcloud":
+    soundcloud:
         url: "https://api.soundcloud.com/tracks/",
         clientId: "44526461ced5e1089af2f7c306061d9e"
     names: ["Character", "Liu Kang", "Johnny Cage", "Kano", "Raiden", "Scorpion", "Sonya Blade", "Sub-Zero", "Goro",
@@ -13,4 +13,5 @@
             "Moloch", "Nitara", "Sareena", "Ashrah", "Dairou", "Darrius", "Havik", "Hotaru", "Kira", "Kobra", "Onaga",
             "Shujinko", "Daegon", "Taven", "Skarlet", "Tremor", "Cassie Cage", "D'Vorah", "Erron Black", "Ferra/Torr",
             "Jacqui Briggs", "Kotal Kahn", "Kung Jin", "Takeda"]
+    auctionDuration: 120000
 }
