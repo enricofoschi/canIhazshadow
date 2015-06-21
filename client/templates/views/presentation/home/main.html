@@ -7,7 +7,7 @@
                     {{#each this}}
                         <div class="col-sm-4 col-md-3 col-xs-12">
                             <div class="master-card">
-                                <div class="img-circle" style="background-image:url('{{ masterPicture this}}')"></div>
+                                <div class="img-circle img-master" style="background-image:url('{{ masterPicture this}}')"></div>
                                 <span class="title">{{ masterFullName this}}</span>
                                 Shadow on
                                 <strong>{{ masterSkill this}}</strong> by donating to
@@ -43,7 +43,7 @@
             {{#autoForm class="adaptive-field-wrapper" meteormethod='setCharity' schema=providerSchema id="insertCharityForm" type="method" trimStrings=true}}
 
                 <div class="row">
-                    <div class="col-md-offset-2 col-md-8">
+                    <div class="col-md-offset-3 col-md-6">
                         {{#if isApproved}}
                             <div class="alert alert-success bottom30">
                                 You have been approved. Your auction will last 14 days.
@@ -55,11 +55,11 @@
                                     <p>Messed up some details? No worries! Just fix them right below!</p>
                                 </div>
                             {{/if}}
-                            {{> afQuickField value=skill class='input-lg' name='skill' class="bottom30" placeholder='schemaLabel'}}
+                            {{> afQuickField value=skill class='input-lg' name='skill' placeholder='schemaLabel'}}
 
-                            {{> afQuickField value=charity class='input-lg' name='charity' class="bottom30" placeholder='schemaLabel'}}
+                            {{> afQuickField value=charity class='input-lg' name='charity' placeholder='schemaLabel'}}
 
-                            {{> afQuickField value=charityDetails class='input-lg' name='charity_details' class="bottom30" placeholder='schemaLabel' type='textarea'}}
+                            {{> afQuickField value=charityDetails class='input-lg' name='charity_details' placeholder='schemaLabel' type='textarea'}}
 
                             {{#if isValidating}}
                                 <button type="submit" class="btn btn-lg btn-success btn-request-approval">Update
