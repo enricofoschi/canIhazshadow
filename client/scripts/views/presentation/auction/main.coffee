@@ -138,6 +138,11 @@
                 return 'A mobile user '
             else
                 return name
+
+        code: ->
+            @shadowMaster.profile.shadow_for_good.code
+        number: =>
+            template.serverSettings?.get()?.twilioNumber
     }
 
 )(Helpers.Client.TemplatesHelper.Handle('presentation.auction.main'))
