@@ -25,12 +25,15 @@
             callback false
 
     pusherSubscribe = ->
-        if not template.currentInstance?.data or subscribed
+        if not template.currentInstance?.data or subscribed or pusher.channel 'bids'
             return
 
         subscribed = true
+        console.log 'Subscribing to Pusher'
         channel = pusher.subscribe 'bids'
         channel.bind 'new_bid', (data) ->
+            console.log 'Event'
+            console.log data
             if data.from is Meteor.userId() or template.currentInstance.data.shadowMaster._id isnt data.masterId
                 return
             else
@@ -67,7 +70,6 @@
             Helpers.Client.Modal.Close()
 
     bidCallback = (e, r)=>
-        console.log e
         if e is 'LOW' or e
             Helpers.Client.Notifications.Error 'Please enter a bid amount higher than the current bid'
         else
@@ -86,7 +88,7 @@
 
     template.onDestroyed = ->
         if pusher
-            pusher.unsubscribe()
+            pusher.unsubscribe 'bids'
 
     # HACKING THE SHIT OUT OF IT
     addZero = (str) =>

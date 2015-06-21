@@ -29,6 +29,7 @@ Meteor.methods {
         }
 
         pusher = Crater.Services.Get Services.PUSHER
+        console.log 'Triggering'
         pusher.trigger 'bids', 'new_bid', {
             bid: bid
             masterId: masterId
