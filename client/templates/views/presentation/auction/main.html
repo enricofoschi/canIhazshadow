@@ -28,6 +28,7 @@
                     <h2 class="bid-title">PLACE THE FIRST BID: <span class="bid-amount">&euro; {{ currentBid }}</span>
                     </h2>
                     {{/if}}
+                    <div class="row">
                     {{#if isWinner}}
                     {{#if isTerminated}}
                     <div class="col-md-12">
@@ -47,7 +48,8 @@
                     <div class="row">
                         <div class="col-sm-offset-4 col-sm-4">
                             <div class="input-group">
-                                <input type="number" class="txt-number form-control input-lg" placeholder="Amount"
+                                <span class="euro">&euro;</span>
+                                <input type="number" class="txt-number text-right form-control input-lg" placeholder="Amount"
                                        value="{{newAmount}}">
                     <span class="input-group-btn">
                         <button class="btn-place-bid btn btn-success btn-lg" type="button">Place Bid <i
@@ -58,6 +60,12 @@
                     </div>
                     {{/if}}
                     {{/if}}
+                    </div>
+                </div>
+
+                <div class="bg-white-transparent pfull20 bid-sms">
+                    <h2></h2>
+                    <h2></h2>
                 </div>
             </div>
             <div class="col-md-3">
