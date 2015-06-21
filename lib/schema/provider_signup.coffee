@@ -14,4 +14,8 @@
             label: 'What do you want to teach?'
             max: 50
         }
+        skill_details: {
+            type: String,
+            label: 'What would somebody learn by shadowing you?'
+        }
     }
