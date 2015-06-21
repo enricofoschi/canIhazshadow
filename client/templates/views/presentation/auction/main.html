@@ -2,21 +2,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <div class="bg-white-transparent">
+                <div class="bg-white-transparent pfull20">
                     {{#if isApproved}}
                     {{#if countDown}}
                     <h1 class="page-title">Ends in: {{countDown}}</h1>
                     {{/if}}
                     {{/if}}
                     {{#if hasBid }}
-                    <h2 class="bid-title">CURRENT BID: <span class="bid-amount">&euro;{{ currentBid }}</span></h2>
-                    <h3 class="bidder-detail">by
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="bid-title">CURRENT BID <span class="bid-amount">&euro;{{ currentBid }}</span></h2>
+                        </div>
+                        <div class="col-md-12">
+                            <h3 class="bidder-detail">by
 
-                    <span class="bidder-img">
-                        <div class="img-circle" style="background-image:url('{{bidderProfilePicture}}')"></div>
-                    </span>
-                        {{bidderFullName}}
-                    </h3>
+                                <span class="bidder-img">
+                                    <div class="img-circle" style="background-image:url('{{bidderProfilePicture}}')"></div>
+                                </span>
+                                {{bidderFullName}}
+                            </h3>
+                        </div>
+                    </div>
+
                     {{else}}
                     <h2 class="bid-title">PLACE THE FIRST BID: <span class="bid-amount">&euro; {{ currentBid }}</span>
                     </h2>
