@@ -28,4 +28,10 @@ Meteor.methods {
             auction_id: masterId
         }
 
+        pusher = Crater.Services.Get Services.PUSHER
+        pusher.trigger 'bids_' + masterId, 'new_bid', {
+            bid: bid
+            from: bidderId || Meteor.userId()
+        }
+
 }

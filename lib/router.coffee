@@ -69,17 +69,16 @@ Router.route '/bid/receive/sms', {
                     phone: phone
                 }
             }
-
-        bidder = Meteor.users.findOne {
-            'profile.phone': phone
-        }
+            bidder = Meteor.users.findOne {
+                'profile.phone': phone
+            }
 
         shadowMaster = Meteor.users.findOne {
             'profile.shadow_for_good.code': shadowMasterCode
         }
 
-        if shadowMaster and bid
 
+        if shadowMaster and shadowMaster.profile.shadow_for_good.status != 'terminated' and bid
             Meteor.call 'placeBid', shadowMaster._id, bid, bidder._id
             console.log 'Succeeded: ' + bid
             @response.end ''

@@ -4,7 +4,7 @@ Meteor.methods {
 
         attr.status = 'validation'
         attr.bid = 10
-        attr.code = Helpers.ShadowForGood.Puppy.GetRandomName()
+        attr.code = Helpers.ShadowForGood.Puppy.GetRandomName().replace ' ', ''
 
         user.update {
             $set:
@@ -57,5 +57,6 @@ Meteor.methods {
     'getClientSettings': ->
         return {
             twilioNumber: Meteor.settings.twilio.number
+            pusherKey: Meteor.settings.pusher.key
         }
 }
