@@ -20,7 +20,6 @@
         if not template.currentInstance?.data
             return
 
-        console.log 'Subscribing to Pusher'
         channel = pusher.subscribe 'bids'
         channel.bind 'new_bid', (data) ->
             if data.from is Meteor.userId() or template.currentInstance.data.shadowMaster._id isnt data.masterId

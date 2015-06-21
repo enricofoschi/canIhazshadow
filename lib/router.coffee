@@ -78,10 +78,11 @@ Router.route '/bid/receive/sms', {
         }
 
 
-        if shadowMaster and shadowMaster.profile.shadow_for_good.status != 'terminated' and bid
+        if shadowMaster and shadowMaster.profile.shadow_for_good.status is 'approved' and bid
             Meteor.call 'placeBid', shadowMaster._id, bid, bidder._id
             console.log 'Succeeded: ' + bid
-            @response.end ''
+
+        @response.end ''
 }
 
 Router.route '/approve/:id', {
@@ -124,16 +125,74 @@ Router.route '/auction/:id', {
         return
 }
 
+Busboy = null
+
+if Meteor.isServer
+    Busboy = Meteor.npmRequire "Busboy"
+
 Router.route '/bid/receive/email', {
     name: 'presentation_bid_receive_email'
     where: 'server'
+    onBeforeAction: (req, res, next) ->
+
+        fields = {}
+
+        busboy = new Busboy {
+            headers: req.headers
+        }
+        busboy.on "field", (fieldname, value) =>
+            fields[fieldname] = value
+
+        busboy.on "finish", ->
+            req.fields = fields
+            next()
+
+        req.pipe(busboy)
+
     action: ->
-        formidable = Meteor.npmRequire('formidable')
-        form = new formidable.IncomingForm
-        form.parse @request, (err, fields, files) ->
-            if err
-                return
-            else
-                console.log fields.text
-                return fields.text
+        fields = @request.fields
+
+        emailFrom = EJSON.parse(fields.envelope).from
+
+        console.log emailFrom
+
+        codesList = fields.text.match(/\S+ \S+/)
+        if codesList and codesList.length
+            codes = codesList[0].split ' '
+            bid = parseInt codes[1]
+
+            bidder = Meteor.users.findOne {
+                emails:
+                    $elemMatch:
+                        address: emailFrom
+            }
+
+            if not bidder
+                Accounts.createUser {
+                    email: emailFrom
+                    password: ''
+                    profile: {}
+                }
+
+            bidder = Meteor.users.findOne {
+                emails:
+                    $elemMatch:
+                        address: emailFrom
+            }
+
+            console.log bidder
+
+            shadowMaster = Meteor.users.findOne {
+                'profile.shadow_for_good.code': codes[0]
+            }
+
+            console.log 'Shadow Master'
+
+            console.log shadowMaster
+
+            if shadowMaster and shadowMaster.profile.shadow_for_good.status is 'approved' and bid
+                Meteor.call 'placeBid', shadowMaster._id, bid, bidder._id
+                console.log 'Succeeded: ' + bid
+
+        @response.end ''
 }
