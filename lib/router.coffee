@@ -39,7 +39,18 @@ Router.route '/bid/receive/sms', {
     name: 'presentation_bid_receive_sms'
     where: 'server'
     action: ->
-        console.log this.request.body.From + ' says: ' + this.request.body.Body
+        Meteor.users.insert {
+            profile: {
+                phone: @request.body.From
+            }
+        }
+
+        shadowMaster = Meteor.users.findOne {
+            'profile.shadow_for_good.code': yourCode
+        }
+
+        if shadowMaster
+
 }
 
 Router.route '/approve/:id', {
