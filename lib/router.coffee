@@ -27,11 +27,23 @@ Router.route '/', {
         return
 }
 
-Router.route '/payment', {
+Router.route '/pay/:id', {
     controller: PresentationController
     name: 'presentation_payment_index'
     action: ->
-        @render 'presentation.payment.index'
+
+        shadowMaster = new MeteorUser Meteor.users.findOne {
+            _id: @params.id
+        }
+
+        console.log Meteor.userId() + ' - ' + shadowMaster.profile.shadow_for_good.bidder
+        if Meteor.userId() isnt shadowMaster.profile.shadow_for_good.bidder or shadowMaster.profile.shadow_for_good.paid
+            Router.go '/'
+
+        @render 'presentation.payment.index', {
+            data:
+                shadowMaster: shadowMaster
+        }
         return
 }
 

@@ -11,9 +11,13 @@ Meteor.methods {
                 'profile.shadow_for_good': attr
         }
 
+        ShadowForGood.Collections.Bid.destroyAll {
+            auction_id: user._id
+        }
+
         Helpers.Server.ShadowForGood.Email.Send {
             template: 'approve'
-            subject: 'Subject'
+            subject: 'Approve a new charity'
             data: {
                 sender: user.getFullName()
                 skill: user.profile.shadow_for_good.skill
@@ -34,11 +38,12 @@ Meteor.methods {
                 user.update {
                     $set:
                         'profile.shadow_for_good.status': 'approved'
+                        'profile.shadow_for_good.terminates': (new Date()).getTime() + GlobalSettings.auctionDuration
                 }
 
                 Helpers.Server.ShadowForGood.Email.Send {
                     template: 'approved'
-                    subject: 'Subject'
+                    subject: 'You have been approved'
                     data: {
                         firstName: user.getFirstName()
                         url: Meteor.absoluteUrl 'auction/' + user._id
@@ -48,5 +53,4 @@ Meteor.methods {
                 }
         else
             throw 'Damn, no authorization'
-
 }

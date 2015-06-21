@@ -21,18 +21,25 @@
                         method: 'makePayment'
                         params: [
                             response.nonce
+                            template.currentInstance.data.shadowMaster.profile.shadow_for_good.bid
+                            template.currentInstance.data.shadowMaster._id
                         ]
                         callback: (e, r) ->
                             if e
                                 Helpers.Client.Notifications.Error 'Oh darn!'
                             else
-                                Helpers.Client.Notifications.Success 'Woah buddy!'
+                                Helpers.Client.Notifications.Success 'Well done! Now let the shadowing begin! Your master will soon get in touch with you!'
                     }
         )
 
     template.onCustomCreated = =>
 
         getClientToken initPaymentForm
+
+    template.helpers {
+        'amount': ->
+            @shadowMaster.profile.shadow_for_good.bid
+    }
 
 
 
