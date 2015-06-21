@@ -40,24 +40,31 @@
     template.helpers {
         isMaster: ->
             user = new MeteorUser Meteor.user()
+            if user.anonymous then return false
             return user.profile.shadow_for_good
         providerSchema: ->
             Crater.Schema.Get ShadowForGood.Schema.ProviderSignup
         isApproved: ->
             user = new MeteorUser Meteor.user()
-            user.profile.shadow_for_good.status is 'approved'
+            if user.anonymous then return false
+            user.profile.shadow_for_good?.status is 'approved'
         isValidating: ->
             user = new MeteorUser Meteor.user()
-            user.profile.shadow_for_good.status is 'validation'
+            if user.anonymous then return false
+            user.profile.shadow_for_good?.status is 'validation'
         charity: ->
             user = new MeteorUser Meteor.user()
-            user.profile.shadow_for_good?.charity
+            user.profile?.shadow_for_good?.charity
         charityDetails: ->
             user = new MeteorUser Meteor.user()
-            user.profile.shadow_for_good?.charity_details
+            user.profile?.shadow_for_good?.charity_details
         skill: ->
             user = new MeteorUser Meteor.user()
-            user.profile.shadow_for_good?.skill
+            user.profile?.shadow_for_good?.skill
+
+        skillDetails: ->
+            user = new MeteorUser Meteor.user()
+            user.profile?.shadow_for_good?.skill_details
 
         masterFullName: (user) ->
             user = new MeteorUser user
