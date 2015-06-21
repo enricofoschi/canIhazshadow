@@ -28,11 +28,8 @@
         if not template.currentInstance?.data or subscribe
             return
 
-<<<<<<< Updated upstream
-=======
         subscribed = true
         console.log 'Subscribing to Pusher'
->>>>>>> Stashed changes
         channel = pusher.subscribe 'bids'
         channel.bind 'new_bid', (data) ->
             if data.from is Meteor.userId() or template.currentInstance.data.shadowMaster._id isnt data.masterId
@@ -187,10 +184,10 @@
             user = new MeteorUser user_id
             return user.getProfilePicture()
 
-        previousBidderFullName: (user_id) ->
+        previousBidderFirstName: (user_id) ->
             user = new MeteorUser user_id
 
-            name = user.getFullName()
+            name = user.getFirstName()
             if not name
                 return 'A mobile user '
             else

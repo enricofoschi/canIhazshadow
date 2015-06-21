@@ -64,14 +64,17 @@
                 </div>
 
                 <div class="bg-white-transparent pfull20 bid-sms">
-                    <h2></h2>
-                    <h2></h2>
+                    <h2>or send a text to {{number}} with <span class="inline">{{code}} {{newAmount}}</span> (or whatever amound higher than {{newAmount}})</h2>
+                </div>
+                <div class="bg-white-transparent pfull20 bid-sms">
+                    <h2>or send a text to inbound@enrico.foschi.bymail.in with  <span class="inline">{{code}} {{newAmount}}</span> (or whatever amound higher than {{newAmount}})</h2>
                 </div>
             </div>
             <div class="col-md-3">
                 <section class="text-center bg-white-transparent pfull20">
-                    {{#if previousBids}}
                     <h2>Previous Bids By</h2>
+
+                    {{#if previousBids}}
                     <ul class="list-unstyled previousBids">
                         {{#each previousBids}}
                         <li class="bottom15">
@@ -81,11 +84,13 @@
                                      style="background-image:url('{{previousBidderProfilePicture user_id}}')"></div>
                             </span>
                             {{/if}}
-                            {{previousBidderFullName user_id}}
-                            bid {{amount}}
+                            {{previousBidderFirstName user_id}}
+                            bid &euro;{{amount}}
                         </li>
                         {{/each}}
                     </ul>
+                        {{else}}
+                        No bids yet...
                     {{/if}}
                 </section>
             </div>
