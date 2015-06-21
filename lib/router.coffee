@@ -73,9 +73,14 @@ Router.route '/bid/receive/sms', {
                 'profile.phone': phone
             }
 
+        console.log shadowMasterCode.toLowerCase()
+
         shadowMaster = Meteor.users.findOne {
-            'profile.shadow_for_good.code': shadowMasterCode
+            'profile.shadow_for_good.code': shadowMasterCode.toLowerCase()
         }
+
+        console.log shadowMaster
+        console.log bid
 
 
         if shadowMaster and shadowMaster.profile.shadow_for_good.status is 'approved' and bid
@@ -180,15 +185,9 @@ Router.route '/bid/receive/email', {
                         address: emailFrom
             }
 
-            console.log bidder
-
             shadowMaster = Meteor.users.findOne {
-                'profile.shadow_for_good.code': codes[0]
+                'profile.shadow_for_good.code': codes[0].toLowerCase()
             }
-
-            console.log 'Shadow Master'
-
-            console.log shadowMaster
 
             if shadowMaster and shadowMaster.profile.shadow_for_good.status is 'approved' and bid
                 Meteor.call 'placeBid', shadowMaster._id, bid, bidder._id

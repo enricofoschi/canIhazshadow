@@ -1,7 +1,7 @@
 ((template) =>
 
     pusher = null
-    subscribe = false
+    subscribed = false
 
     naurisAwesomeSounds = [
         211273164,
@@ -25,13 +25,14 @@
             callback false
 
     pusherSubscribe = ->
-        if not template.currentInstance?.data or subscribe
+        if not template.currentInstance?.data or subscribed
             return
 
         subscribed = true
         console.log 'Subscribing to Pusher'
         channel = pusher.subscribe 'bids'
         channel.bind 'new_bid', (data) ->
+            console.log data
             if data.from is Meteor.userId() or template.currentInstance.data.shadowMaster._id isnt data.masterId
                 return
             else
@@ -68,13 +69,14 @@
             Helpers.Client.Modal.Close()
 
     bidCallback = (e, r)=>
+        console.log e
         if e is 'LOW' or e
             Helpers.Client.Notifications.Error 'Please enter a bid amount higher than the current bid'
         else
             Helpers.Client.Notifications.Success 'Your bid is confirmed.', 'Awesome!'
 
     template.onCustomCreated = ->
-        subscribe = false
+        subscribed = false
         initPusher (initialized) ->
             if initialized
                 pusherSubscribe()

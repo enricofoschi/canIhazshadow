@@ -4,7 +4,7 @@ Meteor.methods {
 
         attr.status = 'validation'
         attr.bid = 10
-        attr.code = Helpers.ShadowForGood.Puppy.GetRandomName().replace ' ', ''
+        attr.code = Helpers.ShadowForGood.Puppy.GetRandomName().replace(' ', '').toLowerCase()
 
         user.update {
             $set:
