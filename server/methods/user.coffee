@@ -57,5 +57,6 @@ Meteor.methods {
     'getClientSettings': ->
         return {
             twilioNumber: Meteor.settings.twilio.number
+            pusherKey: Meteor.settings.pusher.key
         }
 }

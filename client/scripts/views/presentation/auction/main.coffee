@@ -1,20 +1,48 @@
 ((template) =>
 
+    pusher = null
+
+    naurisAwesomeSounds = [
+        293
+    ]
+
+    initPusher = (callback)->
+        if pusher
+            callback true
+
+        if template.serverSettings?.get()?.pusherKey
+            pusher = new Pusher template.serverSettings.get().pusherKey
+            callback true
+        else
+            callback false
+
+    pusherSubscribe = ->
+        if not template.currentInstance?.data
+            return
+
+        console.log 'Subscribing to Pusher'
+        channel = pusher.subscribe 'bids_' + template.currentInstance.data.shadowMaster._id
+        channel.bind 'new_bid', (data) ->
+            if data.from is Meteor.userId()
+                return
+            else
+                bidder = new MeteorUser data.from
+                Helpers.Client.Notifications.Warning 'Dyam! ' + bidder.getFirstName() + ' bid ' + data.bid + ' for this shadowing opportunity! Better hurry up and bid some more!'
+                naurisAwesomeSound = _.sample(naurisAwesomeSounds, 1)[0]
+                Helpers.Client.ShadowForGood.SoundCloud.Play naurisAwesomeSound
+
+    Tracker.autorun ->
+        if template.serverSettings?.get()?.pusherKey
+            initPusher (initialized) ->
+                if initialized
+                    pusherSubscribe()
+
     countDown = new ReactiveVar(null)
     counterInterval = null
 
     Helpers.Client.Application.addCallbacksToTemplate template.viewName, [
         'adaptive-label'
     ]
-
-    channel = 'bids'
-    event = 'add_bid'
-    data = 'message: test'
-
-    console.log 'gets here'
-    Meteor.call 'pusherSubscribe', channel, event, data
-
-    console.log 'event triggered'
 
     chosenAuction = null
 
@@ -37,11 +65,18 @@
             Helpers.Client.Notifications.Success 'Your bid is confirmed.', 'Awesome!'
 
     template.onCustomCreated = ->
+        initPusher (initialized) ->
+            if initialized
+                pusherSubscribe()
         chosenAuction = null
         countDown.set(null)
         if counterInterval
             clearInterval(counterInterval)
             counterInterval = null
+
+    template.onDestroyed = ->
+        if pusher
+            pusher.unsubscribe()
 
     # HACKING THE SHIT OUT OF IT
     addZero = (str) =>
