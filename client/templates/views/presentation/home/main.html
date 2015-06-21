@@ -8,10 +8,10 @@
                         {{#each this}}
                             <div class="col-sm-4 col-md-3 col-xs-12">
                                 <div class="master-card">
-                                    <div class="img-circle"
+                                    <div class="img-circle img-master"
                                          style="background-image:url('{{ masterPicture this}}')"></div>
                                     <span class="title">{{ masterFullName this}}</span>
-                                    <span class="subtitle">You will shadow:</span>
+                                    <span class="subtitle">You will shadow</span>
                                     <strong>{{ masterSkill this}}</strong>
                                     <hr/>
                                     <span class="subtitle">by donating to</span><strong>{{ masterCharity this}}</strong>
@@ -23,7 +23,7 @@
                     </div>
                 {{/each}}
             {{else}}
-                <p class="bottom0">Darn. There are no masters at the moment.</p>
+                <p class="bottom0 text-center">Darn. There are no masters at the moment.</p>
             {{/if}}
         </div>
     </section>
