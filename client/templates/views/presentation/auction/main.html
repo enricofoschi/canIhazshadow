@@ -1,7 +1,7 @@
 <template name="presentation.auction.main">
     <div class="container text-center">
         {{#if isApproved}}
-        Ends in: {{countDown}}
+        <h1 class="page-title">Ends in: {{countDown}}</h1>
         {{/if}}
             {{#if hasBid }}
                 <h2 class="bid-title">CURRENT BID: <span class="bid-amount">&euro;{{ currentBid }}</span></h2>
@@ -17,7 +17,11 @@
                 <h2 class="bid-title">PLACE THE FIRST BID: <span class="bid-amount">&euro; {{ currentBid }}</span></h2>
             {{/if}}
             {{#if isWinner}}
-                Hold on buddy, you are winning
+                {{#if isTerminated}}
+                <h1>CONGRATULATIONS! YOU WON THIS</h1>
+                {{else}}
+                    <h1>SO FAR, YOU ARE ROCKING THIS</h1>
+                {{/if}}
             {{else}}
                 {{#if isTerminated}}
                     This auction ended.
@@ -36,21 +40,28 @@
                 </div>
                 {{/if}}
             {{/if}}
+        </div>
+    <section class="text-center bg-white-transparent pfull20">
+        <div class="container">
             {{#if previousBids}}
-                <h3>Previous Bids By</h3>
+                <h2>Previous Bids By</h2>
                 <ul class="list-unstyled previousBids">
                     {{#each previousBids}}
-                        <li>
+                        <li class="bottom15">
+                            {{#if previousBidderProfilePicture user_id}}
                             <span class="bidder-img">
                                 <div class="img-circle"
                                      style="background-image:url('{{previousBidderProfilePicture user_id}}')"></div>
-                            </span> {{previousBidderFullName user_id}}
+                            </span>
+                            {{/if}}
+                            {{previousBidderFullName user_id}}
                             bid {{amount}}
                         </li>
                     {{/each}}
                 </ul>
             {{/if}}
     </div>
+        </section>
     <div class="modal fade" id="signupDialog">
         <div class="modal-dialog">
             <div class="modal-content">

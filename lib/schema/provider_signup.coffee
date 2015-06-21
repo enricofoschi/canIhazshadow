@@ -2,20 +2,20 @@
     {
         charity: {
             type: String
-            label: 'Who do you want to donate the winnings to?'
+            label: 'Your Charity'
             max: 250
         }
         charity_details: {
             type: String
-            label: 'Charitz Bank Account Details (whatever you have: IBAN, BIC, etc....)'
+            label: 'Charity Payment Details'
         },
         skill: {
             type: String,
-            label: 'What do you want to teach?'
+            label: 'What can you teach?'
             max: 50
         }
         skill_details: {
             type: String,
-            label: 'What would somebody learn by shadowing you?'
+            label: 'What would they learn?'
         }
     }

@@ -132,7 +132,12 @@
 
         previousBidderFullName: (user_id) ->
             user = new MeteorUser user_id
-            return user.getFullName()
+
+            name = user.getFullName()
+            if not name
+                return 'A mobile user '
+            else
+                return name
     }
 
 )(Helpers.Client.TemplatesHelper.Handle('presentation.auction.main'))
