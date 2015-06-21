@@ -1,9 +1,17 @@
 ((template) =>
 
     pusher = null
+    subscribe = false
 
     naurisAwesomeSounds = [
-        293
+        211273164,
+        211273134,
+        211273116,
+        211273093,
+        211273082,
+        211277967,
+        211280290,
+        211280489
     ]
 
     initPusher = (callback)->
@@ -17,9 +25,14 @@
             callback false
 
     pusherSubscribe = ->
-        if not template.currentInstance?.data
+        if not template.currentInstance?.data or subscribe
             return
 
+<<<<<<< Updated upstream
+=======
+        subscribed = true
+        console.log 'Subscribing to Pusher'
+>>>>>>> Stashed changes
         channel = pusher.subscribe 'bids'
         channel.bind 'new_bid', (data) ->
             if data.from is Meteor.userId() or template.currentInstance.data.shadowMaster._id isnt data.masterId
@@ -64,6 +77,7 @@
             Helpers.Client.Notifications.Success 'Your bid is confirmed.', 'Awesome!'
 
     template.onCustomCreated = ->
+        subscribe = false
         initPusher (initialized) ->
             if initialized
                 pusherSubscribe()
