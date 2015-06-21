@@ -49,16 +49,16 @@
         }
       }
     },
-    "pusher": {
-        "version": "0.1.3",
-        "dependencies": {
-            "request": {
-                "version": "2.9.203"
-            }
-        }
-    },
     "formidable": {
       "version": "1.0.17"
+    },
+    "pusher": {
+      "version": "0.1.3",
+      "dependencies": {
+        "request": {
+          "version": "2.9.203"
+        }
+      }
     }
   }
 }

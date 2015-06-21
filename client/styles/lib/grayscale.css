@@ -9,7 +9,12 @@ body {
     height: 100%;
     font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #fff;
-    background-color: #000;
+    background-image:url(/img/banner.jpg);
+    background-position: center center;
+    background-repeat:no-repeat;
+    background-color:#0F0F0F;
+    background-size:cover;
+
 }
 
 html {
@@ -140,15 +145,16 @@ a:focus {
     }
 }
 
-.intro {
+.navbar-custom {
     display: table;
     width: 100%;
     height: auto;
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
-    background-color: #000;
+    font-family: 'bt_monobold', 'Open Sans', sans-serif !important;
+    /*background: url(/img/banner.png) no-repeat;*/
+    /*background-color: #000;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
