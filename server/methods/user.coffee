@@ -17,7 +17,7 @@ Meteor.methods {
 
         Helpers.Server.ShadowForGood.Email.Send {
             template: 'approve'
-            subject: 'Approve a new charity'
+            subject: 'Approve a new shadowing'
             data: {
                 sender: user.getFullName()
                 skill: user.profile.shadow_for_good.skill

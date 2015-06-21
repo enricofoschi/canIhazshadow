@@ -1,90 +1,100 @@
 <template name="presentation.home.main">
-    <h1 class="page-title">Blablabla some <br> fancy text</h1>
+    <h1 class="page-title">Bid your best to shadow a great master</h1>
     <section id="shadowMasters" class="intro">
         <div class="container">
-            {{#each shadowMasters}}
-                <div class="row">
-                    {{#each this}}
-                        <div class="col-sm-4 col-md-3 col-xs-12">
-                            <div class="master-card">
-                                <div class="img-circle" style="background-image:url('{{ masterPicture this}}')"></div>
-                                <span class="title">{{ masterFullName this}}</span>
-                                <span class="subtitle">You will shadow:</span>
-                                <strong>{{ masterSkill this}}</strong>
-                                <hr />
-                                <span class="subtitle">by donating to</span><strong>{{ masterCharity this}}</strong>
-                                <button class="btn btn-block btn-lg btn-success top15 btn-place-bid">PLACE BID</button>
+            {{#if shadowMasters}}
+                {{#each shadowMasters}}
+                    <div class="row">
+                        {{#each this}}
+                            <div class="col-sm-4 col-md-3 col-xs-12">
+                                <div class="master-card">
+                                    <div class="img-circle"
+                                         style="background-image:url('{{ masterPicture this}}')"></div>
+                                    <span class="title">{{ masterFullName this}}</span>
+                                    <span class="subtitle">You will shadow:</span>
+                                    <strong>{{ masterSkill this}}</strong>
+                                    <hr/>
+                                    <span class="subtitle">by donating to</span><strong>{{ masterCharity this}}</strong>
+                                    <button class="btn btn-block btn-lg btn-success top15 btn-place-bid">PLACE BID
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    {{/each}}
-                </div>
-            {{/each}}
+                        {{/each}}
+                    </div>
+                {{/each}}
+            {{else}}
+                <p class="bottom0">Darn. There are no masters at the moment.</p>
+            {{/if}}
         </div>
     </section>
-    <section id="provider" class="container text-center">
-        <h2>Get somebody to shadow you <strong>for good</strong></h2>
+    <hr class="large bottom0"/>
+    <section id="provider" class="text-center bg-white-transparent pfull20">
+        <div class="container">
+            <h2>Get somebody to shadow you <strong>for good</strong></h2>
 
-        <h3>It's easy. People bid. Winners shadows you.</h3>
+            <h3>It's easy. People bid. Winners shadows you.</h3>
 
-        {{#if currentUser.anonymous}}
-            <div class="row">
-                <div class="col-sm-offset-3 col-sm-6">
-                    <a class="right10 btn btn-lg btn-social btn-continue-twitter btn-twitter">
-                        <i class="fa fa-twitter"></i> Twitter
-                    </a>
-                    <a class="right10 btn btn-lg btn-social btn-continue-facebook btn-facebook">
-                        <i class="fa fa-facebook"></i> Facebook
-                    </a>
-                    <a class="btn btn-lg btn-social btn-continue-linkedin btn-linkedin">
-                        <i class="fa fa-linkedin"></i> LinkedIn
-                    </a>
-                </div>
-            </div>
-        {{else}}
-            {{#autoForm class="adaptive-field-wrapper" meteormethod='setCharity' schema=providerSchema id="insertCharityForm" type="method" trimStrings=true resetOnSuccess=false}}
-
+            {{#if currentUser.anonymous}}
                 <div class="row">
-                    <div class="col-md-offset-2 col-md-8">
-                        {{#if isApproved}}
-                            <div class="alert alert-success bottom30">
-                                You have been approved. Your auction will last 14 days.
-                            </div>
-                        {{else}}
-                            {{#if isValidating}}
-                                <div class="alert alert-success bottom30">
-                                    You are awesome. Let us have a think about this and we'll get back to you.
-                                    <p>Messed up some details? No worries! Just fix them right below!</p>
-                                </div>
-                            {{/if}}
-                            {{> afQuickField value=skill name='skill' class="bottom30 input-lg" placeholder='schemaLabel'}}
-
-                            {{> afQuickField value=skillDetails name='skill_details' class="bottom30 input-lg" placeholder='schemaLabel' type='textarea'}}
-
-                            {{> afQuickField value=charity name='charity' class="bottom30 input-lg" placeholder='schemaLabel'}}
-
-                            {{> afQuickField value=charityDetails name='charity_details' class="bottom30 input-lg" placeholder='schemaLabel' type='textarea'}}
-
-                            {{#if isValidating}}
-                                <button type="submit" class="btn btn-lg btn-success btn-request-approval">Update
-                                    Proposal
-                                </button>
-                            {{else}}
-                                <button type="submit" class="btn btn-lg btn-success btn-request-approval">Request
-                                    Approval
-                                </button>
-                            {{/if}}
-                        {{/if}}
+                    <div class="col-sm-offset-3 col-sm-6">
+                        <a class="right10 btn btn-lg btn-social btn-continue-twitter btn-twitter">
+                            <i class="fa fa-twitter"></i> Twitter
+                        </a>
+                        <a class="right10 btn btn-lg btn-social btn-continue-facebook btn-facebook">
+                            <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                        <a class="btn btn-lg btn-social btn-continue-linkedin btn-linkedin">
+                            <i class="fa fa-linkedin"></i> LinkedIn
+                        </a>
                     </div>
                 </div>
-            {{/autoForm}}
-        {{/if}}
+            {{else}}
+                {{#autoForm class="adaptive-field-wrapper" meteormethod='setCharity' schema=providerSchema id="insertCharityForm" type="method" trimStrings=true resetOnSuccess=false}}
+
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-8">
+                            {{#if isApproved}}
+                                <div class="alert alert-success bottom30">
+                                    You have been approved. Your auction will last 14 days.
+                                </div>
+                            {{else}}
+                                {{#if isValidating}}
+                                    <div class="alert alert-success bottom30">
+                                        You are awesome. Let us have a think about this and we'll get back to you.
+                                        <p>Messed up some details? No worries! Just fix them right below!</p>
+                                    </div>
+                                {{/if}}
+                                {{> afQuickField value=skill name='skill' class="bottom30 input-lg" placeholder='schemaLabel'}}
+
+                                {{> afQuickField value=skillDetails name='skill_details' class="bottom30 input-lg" placeholder='schemaLabel' type='textarea'}}
+
+                                {{> afQuickField value=charity name='charity' class="bottom30 input-lg" placeholder='schemaLabel'}}
+
+                                {{> afQuickField value=charityDetails name='charity_details' class="bottom30 input-lg" placeholder='schemaLabel' type='textarea'}}
+
+                                {{#if isValidating}}
+                                    <button type="submit" class="btn btn-lg btn-success btn-request-approval">Update
+                                        Proposal
+                                    </button>
+                                {{else}}
+                                    <button type="submit" class="btn btn-lg btn-success btn-request-approval">Request
+                                        Approval
+                                    </button>
+                                {{/if}}
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/autoForm}}
+            {{/if}}
+        </div>
     </section>
 
     <div class="modal fade" id="signupDialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Who are thou <i class="fa fa-smile-o"></i>?</h4>
                 </div>
                 <div class="modal-body text-center">
@@ -99,7 +109,9 @@
                         <i class="fa fa-linkedin"></i> LinkedIn
                     </a>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 </template>

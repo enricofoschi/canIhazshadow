@@ -13,5 +13,5 @@
             "Moloch", "Nitara", "Sareena", "Ashrah", "Dairou", "Darrius", "Havik", "Hotaru", "Kira", "Kobra", "Onaga",
             "Shujinko", "Daegon", "Taven", "Skarlet", "Tremor", "Cassie Cage", "D'Vorah", "Erron Black", "Ferra/Torr",
             "Jacqui Briggs", "Kotal Kahn", "Kung Jin", "Takeda"]
-    auctionDuration: 120000
+    auctionDuration: 1200000
 }
