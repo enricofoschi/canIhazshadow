@@ -9,6 +9,17 @@
 
             else
                 return {}
+    PUSHER:
+        key: 'pusher'
+        service: ->
+            if Meteor.settings.pusher
+                appId = Meteor.settings.pusher?.appId
+                key = Meteor.settings.pusher?.key
+                secret = Meteor.settings.pusher?.secret
+
+                return new Crater.Services.ThirdParties.PusherService appId, key, secret
+            else
+                return {}
 }
 
 @Crater.Services.InitAll()

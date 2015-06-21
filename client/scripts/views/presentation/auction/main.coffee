@@ -7,6 +7,15 @@
         'adaptive-label'
     ]
 
+    channel = 'bids'
+    event = 'add_bid'
+    data = 'message: test'
+
+    console.log 'gets here'
+    Meteor.call 'pusherSubscribe', channel, event, data
+
+    console.log 'event triggered'
+
     chosenAuction = null
 
     onLogin = (e) ->

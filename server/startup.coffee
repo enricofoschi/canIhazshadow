@@ -17,14 +17,12 @@ Meteor.startup ->
     }
 
     # Temp for pusher testing
-    Pusher = Meteor.npmRequire('pusher')
-
-    pusher = new Pusher(
-        appId: '125998'
-        key: '636c1f9e8ac0022ede0c'
-        secret: '10c0d4e24a2997185c52'
-    )
-
-    pusher.trigger 'bids', 'add_bid', {
-        "message": "hello world"
-    }
+#    Pusher = Meteor.npmRequire('pusher')
+#
+#    pusher = new Pusher(
+#        appId: Meteor.settings.pusher.appId
+#        key: Meteor.settings.pusher.key
+#        secret: Meteor.settings.pusher.secret
+#    )
+#
+#    pusher.trigger 'bids', 'add_bid', 'message': 'hello world'
